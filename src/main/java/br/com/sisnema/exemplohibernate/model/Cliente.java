@@ -1,10 +1,26 @@
 package br.com.sisnema.exemplohibernate.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Cliente {
+	
+	@Id
+	@Column(name="cod_cliente")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codigo;
+	
+	@Column(nullable=false)
 	private String nome;
+	
 	private String telefone;
+	
 	private String Celular;
+	
 	private String email;
 	
 	

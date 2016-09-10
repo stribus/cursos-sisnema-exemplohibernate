@@ -2,11 +2,34 @@ package br.com.sisnema.exemplohibernate.model;
 
 import java.util.Date;
 
-public class Filme {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@SequenceGenerator(name="filmeSeqJava", sequenceName="filme_seq")
+public class Filme {
+	
+	@Id
+	@GeneratedValue(generator="filmeSeqJava")
+	@Column(name="cod_filme")
 	private Integer codigo;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="cod_categoria",nullable=false)
 	private Categoria categoria;
+	
+	@Column(nullable=false)
 	private String descricao;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date ano;
 
 	public Filme() {

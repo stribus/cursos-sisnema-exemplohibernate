@@ -1,7 +1,17 @@
 package br.com.sisnema.exemplohibernate.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+//@Entity
 public class Endereco {
 
+	
+	@Id
+	//@OneToOne
+	//@JoinColumn
 	private Cliente cliente;
 	private String rua;
 	private Integer numero;

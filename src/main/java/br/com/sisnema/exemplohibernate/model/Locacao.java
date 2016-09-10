@@ -2,13 +2,41 @@ package br.com.sisnema.exemplohibernate.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Locacao {
 
+	@Id
+	@Column(name="cod_locacao")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codigo;
+	
+	@ManyToOne
+	@JoinColumn(name="cod_midia",nullable=false)
 	private Midia midia;
+
+	@ManyToOne
+	@JoinColumn(name="cod_cliente",nullable=false)
 	private Cliente cliente;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=false,updatable=false)
 	private Date emprestimo;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable=true,updatable=false)
 	private Date devolucao;
+	
+	@Column(nullable=false)
 	private String obs;
 
 	public Locacao() {
