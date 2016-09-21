@@ -8,10 +8,12 @@ public abstract class DAO<T> implements IDAO<T> {
 
 	private Session sessionPostgres;
 	private Session sessionMysql;
+	private Session sessionFirebird;
 
 	public DAO() {
-		sessionPostgres = JPAUtil.getEntityManagerPostgres().unwrap(Session.class);
+		//sessionPostgres = JPAUtil.getEntityManagerPostgres().unwrap(Session.class);
 		sessionMysql = JPAUtil.getEntityManagerMysql().unwrap(Session.class);
+		//sessionFirebird = JPAUtil.getEntityManagerFirebird().unwrap(Session.class);
 	}
 
 	public Session getSessionPostgres() {
@@ -20,6 +22,10 @@ public abstract class DAO<T> implements IDAO<T> {
 
 	public Session getSessionMysql() {
 		return sessionMysql;
+	}
+	
+	public Session getSessionFirebird() {
+		return sessionFirebird;
 	}
 
 }

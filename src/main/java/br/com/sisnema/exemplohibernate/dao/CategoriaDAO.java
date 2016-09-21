@@ -38,7 +38,9 @@ public class CategoriaDAO extends DAO<Categoria> {
 									MatchMode.ANYWHERE));
 		}
 		
-		return criteria.list();
+		List<Categoria> lista = criteria.list();
+		
+		return lista;
 	}
 
 	public void setSession(Session session) {

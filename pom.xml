@@ -6,8 +6,8 @@
 	<version>0.0.*-SNAPSHOT</version>
 
 	<properties>
-		<hibernate-version>5.0.0.CR1</hibernate-version>
-		<!--<hibernate-version>5.2.2.Final</hibernate-version>  -->
+		<!-- <hibernate-version>5.0.0.CR1</hibernate-version>  -->
+		<hibernate-version>5.2.2.Final</hibernate-version>  
 	</properties>
 
 	<dependencies>
@@ -47,5 +47,13 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.firebirdsql.jdbc</groupId>
+		    <artifactId>jaybird-jdk18</artifactId>
+		    <version>2.2.11</version>
+		</dependency>
+
+		
 	</dependencies>
 </project>

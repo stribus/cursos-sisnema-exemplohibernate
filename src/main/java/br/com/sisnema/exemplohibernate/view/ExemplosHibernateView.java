@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import br.com.sisnema.exemplohibernate.dao.CategoriaDAOMysql;
 import br.com.sisnema.exemplohibernate.dao.CategoriaDAOPostgress;
 import br.com.sisnema.exemplohibernate.dao.CategoriaDAO;
+import br.com.sisnema.exemplohibernate.dao.CategoriaDAOFirebird;
 import br.com.sisnema.exemplohibernate.model.Categoria;
 
 public class ExemplosHibernateView {
@@ -21,7 +22,8 @@ public class ExemplosHibernateView {
 
 	private static void listarCategorias() {
 		listarCategoriasMySql();
-		listarCategoriasPostgres();
+//		listarCategoriasPostgres();
+//		listarCategoriasFB();
 	}
 	
 	private static void listarCategoriasPostgres() {
@@ -66,15 +68,38 @@ public class ExemplosHibernateView {
 		}
 	}
 
+	private static void listarCategoriasFB() {
+		List<Categoria> categorias = new CategoriaDAOFirebird().pesquisar(new Categoria());
+		
+		StringBuilder linhas = new StringBuilder();
+		int cont=0;
+		JOptionPane.showMessageDialog(null, "Categorias do Firebird");
+		for (Categoria categoria : categorias) {
+			
+			linhas.append(categoria.toString()).append("\n");
+			
+			if( ++cont % 3 == 0){
+				JOptionPane.showMessageDialog(null, linhas);
+				linhas.setLength(0);
+			}
+		}
+		
+		if(linhas.length() > 0){
+			JOptionPane.showMessageDialog(null, linhas);
+		}
+	}
+
 	private static void criarCategorias() {
-		CategoriaDAO catDaoPost = new CategoriaDAOPostgress();
+//		CategoriaDAO catDaoPost = new CategoriaDAOPostgress();
 		CategoriaDAO catDaoMysq = new CategoriaDAOMysql();
+//		CategoriaDAO catDaoFB = new CategoriaDAOFirebird();
 		
 		do{
 			String descricao = JOptionPane.showInputDialog("Informe o nome da categoria");
 			
 			catDaoMysq.salvar(new Categoria(null, descricao));
-			catDaoPost.salvar(new Categoria(null, descricao));
+//			catDaoPost.salvar(new Categoria(null, descricao));
+//			catDaoFB.salvar(new Categoria(null, descricao));
 			
 			if(JOptionPane.showConfirmDialog( null, "Inserir outra categoria? ", "", 
 					JOptionPane.YES_NO_OPTION) 
